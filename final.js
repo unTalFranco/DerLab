@@ -224,7 +224,7 @@ var pintarGraficoTotal = function () {
         }
     });
     var myBarChart = new Chart(ctxTotal, {
-        type: 'bar',
+        type: 'horizontalBar',
         data: {
             labels: nombresDatos,
             datasets: [{
