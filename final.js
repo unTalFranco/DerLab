@@ -39,10 +39,19 @@ var calcular = function (bruto) {
     pintarGraficoContribuciones();
     pintarGraficoTotal();
     pintarGraficoTotalX();
+    pintarCard();
 }
 
 var pintarDivs = function (id,importe){
-    document.getElementById(id).innerHTML = '= $' + importe; 
+    document.getElementById(id).innerHTML = '$' + importe; 
+}
+
+var pintarCard = function () {
+    var costoEmpleador = sueldoBruto * 1 + total.empleador;
+    console.log(sueldoBruto);
+    console.log(total.empleador);
+    var sueldoNeto = sueldoBruto - total.empleado;
+    document.getElementById("card").innerHTML = 'Su empleador pago en total $ ' + costoEmpleador + ' que fueron generados por Ud. que solamente recibio $' + sueldoNeto;
 }
 
 var calcularTotal = function () {
@@ -140,8 +149,8 @@ var pintarGraficoAportes = function () {
 var ctxContribuciones = document.getElementById('totalChart').getContext('2d');
 
 var pintarGraficoContribuciones = function () {
-    var nombresDatos = ['Aportes Totales' , 'Contribucion Totales', 'Sueldo Neto'];
-    var importeDatos = [total.empleado , total.empleador , sueldoBruto - total.empleado ];   
+    var nombresDatos = ['Sueldo Neto', 'Aportes + Contribuciones'];
+    var importeDatos = [ sueldoBruto - total.empleado , total.empleado + total.empleador ];   
         
     
     var myBarChart = new Chart(ctxContribuciones, {
@@ -152,8 +161,8 @@ var pintarGraficoContribuciones = function () {
                 label: 'Num Datos',
                 data: importeDatos,
                 backgroundColor: [
-                    '#c8e6c9',
                     '#a5d6a7',
+                    'grey',
                     '#81c784',
                     '#66bb6a',
                     '#4caf50',
