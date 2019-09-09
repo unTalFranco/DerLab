@@ -51,7 +51,7 @@ var pintarCard = function () {
     console.log(sueldoBruto);
     console.log(total.empleador);
     var sueldoNeto = sueldoBruto - total.empleado;
-    document.getElementById("card").innerHTML = 'Su empleador pago en total $ ' + costoEmpleador + ' que fueron generados por Ud. que solamente recibio $' + sueldoNeto;
+    document.getElementById("card").innerHTML = 'Su empleador por tus servicios brindados pago en total $ ' + costoEmpleador + ' que solamente recibio $' + sueldoNeto + '. La diferencia a donde fue?.';
 }
 
 var calcularTotal = function () {
