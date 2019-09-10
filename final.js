@@ -51,7 +51,7 @@ var pintarCard = function () {
     console.log(sueldoBruto);
     console.log(total.empleador);
     var sueldoNeto = sueldoBruto - total.empleado;
-    document.getElementById("card").innerHTML = 'Su empleador por tus servicios brindados pago en total $ ' + costoEmpleador + ' que solamente recibio $' + sueldoNeto + '. La diferencia a donde fue?.';
+    document.getElementById("card").innerHTML = 'El empleador por tus servicios brindados pagó en total $ ' + costoEmpleador + ' . De los cuales, recibiste tan solo: $' + sueldoNeto + '. La diferencia a donde fue?.';
 }
 
 var calcularTotal = function () {
@@ -119,15 +119,15 @@ var pintarGraficoAportes = function () {
             importeDatos.push(element.empleado);
         }
     });
-    nombresDatos.push('NETO');
+    nombresDatos.push('Neto');
     importeDatos.push(sueldoBruto - total.empleado)
 
     var myBarChart = new Chart(ctxAportes, {
-        type: 'pie',
+        type: 'doughnut',
         data: {
             labels: nombresDatos,
             datasets: [{
-                label: 'Num Datos',
+                label: 'Aportes',
                 data: importeDatos,
                backgroundColor : ['#fff7fb', '#ece2f0', '#d0d1e6', '#a6bddb', '#67a9cf', '#3690c0', '#02818a', '#016c59', '#014636'],             
 
@@ -144,7 +144,7 @@ var pintarGraficoAportes = function () {
 }
 
 
-//grafico total-------------------------------------------------------------------------------------------------------------
+//grafico contribuciones-------------------------------------------------------------------------------------------------------------
 
 var ctxContribuciones = document.getElementById('totalChart').getContext('2d');
 
@@ -219,7 +219,7 @@ var pintarGraficoTotalX = function () {
         //options: options
     });
 }
-
+// grafico contribuciones
 var ctxTotal = document.getElementById('contribucionesChart').getContext('2d');
 var pintarGraficoTotal = function () {
     var nombresDatos = [];
@@ -233,11 +233,11 @@ var pintarGraficoTotal = function () {
         }
     });
     var myBarChart = new Chart(ctxTotal, {
-        type: 'horizontalBar',
+        type: 'doughnut',
         data: {
             labels: nombresDatos,
             datasets: [{
-                label: 'Num Datos',
+                label: 'Contribuciones',
                 data: importeDatos,
                 backgroundColor: [
                     '#c8e6c9',
