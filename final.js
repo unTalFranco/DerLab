@@ -22,7 +22,7 @@ var total = new descuento('TOTAL aportes y contribuciones', 0, 0, 0, 0, 0);
 
 var sueldoBruto = 0;
 
-var captarDatos = function() {
+var captarDatos = function () {
     bruto = document.getElementById('bruto').value;
     calcular(bruto);
 }
@@ -40,18 +40,22 @@ var calcular = function (bruto) {
     pintarGraficoTotal();
     pintarGraficoTotalX();
     pintarCard();
+    pintarBotonTwitter();
 }
 
-var pintarDivs = function (id,importe){
-    document.getElementById(id).innerHTML = '$' + importe; 
+var pintarDivs = function (id, importe) {
+    document.getElementById(id).innerHTML = '$' + importe;
 }
+
+var mensaje = '';
 
 var pintarCard = function () {
     var costoEmpleador = sueldoBruto * 1 + total.empleador;
     console.log(sueldoBruto);
     console.log(total.empleador);
     var sueldoNeto = sueldoBruto - total.empleado;
-    document.getElementById("card").innerHTML = 'El empleador por tus servicios brindados pagó en total $ ' + costoEmpleador + ' . De los cuales, recibiste tan solo: $' + sueldoNeto + '. La diferencia a donde fue?.';
+    mensaje = 'El empleador por tus servicios brindados pagó en total $ ' + costoEmpleador + ' . De los cuales, recibiste tan solo: $' + sueldoNeto + '. La diferencia a donde fue?.';
+    document.getElementById("card").innerHTML = mensaje;
 }
 
 var calcularTotal = function () {
@@ -65,8 +69,8 @@ var calcularTotal = function () {
     });
     console.log(total)
     pintarDivs('contribuciones', total.empleador);
-    pintarDivs('aportes',total.empleado);
-    pintarDivs('ayc',total.empleado + total.empleador)
+    pintarDivs('aportes', total.empleado);
+    pintarDivs('ayc', total.empleado + total.empleador)
 }
 
 var nuevoDescuento = function (nombre, alicuotaAporte, alicuotacontribucion) {
@@ -129,17 +133,17 @@ var pintarGraficoAportes = function () {
             datasets: [{
                 label: 'Aportes',
                 data: importeDatos,
-               backgroundColor : ['#fff7fb', '#ece2f0', '#d0d1e6', '#a6bddb', '#67a9cf', '#3690c0', '#02818a', '#016c59', '#014636'],             
+                backgroundColor: ['#fff7fb', '#ece2f0', '#d0d1e6', '#a6bddb', '#67a9cf', '#3690c0', '#02818a', '#016c59', '#014636'],
 
             }]
         },
         options: {
-            plugins: {        
-              colorschemes: {        
-                scheme: 'brewer.Paired12'        
-              }        
-            }        
-          }
+            plugins: {
+                colorschemes: {
+                    scheme: 'brewer.Paired12'
+                }
+            }
+        }
     });
 }
 
@@ -150,9 +154,9 @@ var ctxContribuciones = document.getElementById('totalChart').getContext('2d');
 
 var pintarGraficoContribuciones = function () {
     var nombresDatos = ['Sueldo Neto', 'Aportes + Contribuciones'];
-    var importeDatos = [ sueldoBruto - total.empleado , total.empleado + total.empleador ];   
-        
-    
+    var importeDatos = [sueldoBruto - total.empleado, total.empleado + total.empleador];
+
+
     var myBarChart = new Chart(ctxContribuciones, {
         type: 'pie',
         data: {
@@ -300,3 +304,15 @@ var grafico = function (ctx) {
     });
 }
 */
+
+
+
+
+//-----Boton de twitter
+var pintarBotonTwitter = function () {
+    var tweet = encodeURI(mensaje);
+    var link = document.getElementById('boton twitter').innerHTML = "<a href='https://twitter.com/intent/tweet?text=" + tweet + "' target='blank'>Twittear</a>"
+    document.getElementById('boton twitter').innerHTML = link;
+}
+
+
